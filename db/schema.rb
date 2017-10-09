@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171009063703) do
+ActiveRecord::Schema.define(version: 20171009121627) do
 
   create_table "devices", force: :cascade do |t|
     t.string "host"
@@ -21,8 +21,6 @@ ActiveRecord::Schema.define(version: 20171009063703) do
     t.string "purpose"
     t.boolean "disabled"
     t.boolean "deleted"
-    t.datetime "create_at"
-    t.datetime "update_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

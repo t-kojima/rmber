@@ -1,11 +1,17 @@
-# README
+# Rmber
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Environments
+- Ruby: 2.4.2p198
+- Rails: 5.1.4
 
-Things you may want to cover:
+## Clone
 
-* Ruby version
+    git clone https://github.com/t-kojima/rmber.git rmber
+    bundle install
+
+## Deployment
+
+
 
 * System dependencies
 
