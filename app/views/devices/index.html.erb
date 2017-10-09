@@ -1,9 +1,15 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+    <div>
+        <h2>Devices</h2>
+        <p>
+            管理機器の一覧
+        </p>
+    </div>
 
-<h1>Devices</h1>
+    <p id="notice"><%= notice %></p>
 
-<table>
-  <thead>
+    <table class="table">
+    <thead>
     <tr>
       <th>Host</th>
       <th>Os</th>
@@ -13,8 +19,6 @@
       <th>Purpose</th>
       <th>Disabled</th>
       <th>Deleted</th>
-      <th>Create at</th>
-      <th>Update at</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -37,6 +41,7 @@
     <% end %>
   </tbody>
 </table>
+</div>
 
 <br>
 
