@@ -1,0 +1,67 @@
+<%= form_with(model: device, local: true) do |form| %>
+  <% if device.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(device.errors.count, "error") %> prohibited this device from being saved:</h2>
+
+      <ul>
+      <% device.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :host %>
+    <%= form.text_field :host, id: :device_host %>
+  </div>
+
+  <div class="field">
+    <%= form.label :os %>
+    <%= form.text_field :os, id: :device_os %>
+  </div>
+
+  <div class="field">
+    <%= form.label :maker %>
+    <%= form.text_field :maker, id: :device_maker %>
+  </div>
+
+  <div class="field">
+    <%= form.label :model %>
+    <%= form.text_field :model, id: :device_model %>
+  </div>
+
+  <div class="field">
+    <%= form.label :_type %>
+    <%= form.text_field :_type, id: :device__type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :purpose %>
+    <%= form.text_field :purpose, id: :device_purpose %>
+  </div>
+
+  <div class="field">
+    <%= form.label :disabled %>
+    <%= form.check_box :disabled, id: :device_disabled %>
+  </div>
+
+  <div class="field">
+    <%= form.label :deleted %>
+    <%= form.check_box :deleted, id: :device_deleted %>
+  </div>
+
+  <div class="field">
+    <%= form.label :create_at %>
+    <%= form.datetime_select :create_at, id: :device_create_at %>
+  </div>
+
+  <div class="field">
+    <%= form.label :update_at %>
+    <%= form.datetime_select :update_at, id: :device_update_at %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

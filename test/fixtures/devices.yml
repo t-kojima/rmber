@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  host: MyString
+  os: MyString
+  maker: MyString
+  model: MyString
+  _type: MyString
+  purpose: MyString
+  disabled: false
+  deleted: false
+  create_at: 2017-10-09 15:37:03
+  update_at: 2017-10-09 15:37:03
+
+two:
+  host: MyString
+  os: MyString
+  maker: MyString
+  model: MyString
+  _type: MyString
+  purpose: MyString
+  disabled: false
+  deleted: false
+  create_at: 2017-10-09 15:37:03
+  update_at: 2017-10-09 15:37:03
