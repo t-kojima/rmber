@@ -59,3 +59,5 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 # Use Bootstrap sass
 gem 'bootstrap-sass'
+# Use Font Awesome
+gem "font-awesome-rails"
