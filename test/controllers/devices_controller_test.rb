@@ -17,7 +17,7 @@ class DevicesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create device" do
     assert_difference('Device.count') do
-      post devices_url, params: { device: { _type: @device._type, create_at: @device.create_at, deleted: @device.deleted, disabled: @device.disabled, host: @device.host, maker: @device.maker, model: @device.model, os: @device.os, purpose: @device.purpose, update_at: @device.update_at } }
+      post devices_url, params: { device: { _type: @device._type, deleted: @device.deleted, disabled: @device.disabled, host: @device.host, maker: @device.maker, model: @device.model, os: @device.os, purpose: @device.purpose } }
     end
 
     assert_redirected_to device_url(Device.last)
@@ -34,7 +34,7 @@ class DevicesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update device" do
-    patch device_url(@device), params: { device: { _type: @device._type, create_at: @device.create_at, deleted: @device.deleted, disabled: @device.disabled, host: @device.host, maker: @device.maker, model: @device.model, os: @device.os, purpose: @device.purpose, update_at: @device.update_at } }
+    patch device_url(@device), params: { device: { _type: @device._type, deleted: @device.deleted, disabled: @device.disabled, host: @device.host, maker: @device.maker, model: @device.model, os: @device.os, purpose: @device.purpose } }
     assert_redirected_to device_url(@device)
   end
 
