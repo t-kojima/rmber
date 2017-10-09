@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Devices</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Host</th>
+      <th>Os</th>
+      <th>Maker</th>
+      <th>Model</th>
+      <th>Type</th>
+      <th>Purpose</th>
+      <th>Disabled</th>
+      <th>Deleted</th>
+      <th>Create at</th>
+      <th>Update at</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @devices.each do |device| %>
+      <tr>
+        <td><%= device.host %></td>
+        <td><%= device.os %></td>
+        <td><%= device.maker %></td>
+        <td><%= device.model %></td>
+        <td><%= device._type %></td>
+        <td><%= device.purpose %></td>
+        <td><%= device.disabled %></td>
+        <td><%= device.deleted %></td>
+        <td><%= device.create_at %></td>
+        <td><%= device.update_at %></td>
+        <td><%= link_to 'Show', device %></td>
+        <td><%= link_to 'Edit', edit_device_path(device) %></td>
+        <td><%= link_to 'Destroy', device, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Device', new_device_path %>
