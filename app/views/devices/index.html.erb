@@ -1,40 +1,82 @@
 <script type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('[data-toggle="tooltip"]').tooltip();
     });
 </script>
+<style>
+    .nav.pull-right.nav-pills {
+        margin: -20px 0
+    }
+
+    .nav li a {
+        padding: 6px 15px
+    }
+
+    @media (min-width: 768px) {
+        .nav.pull-right.nav-pills.nav-sm {
+            display: none;
+        }
+        .contents-header {
+            float: left;
+            margin: -36px 0 0 0
+        }
+    }
+
+    @media (max-width: 767px) {
+        .nav.pull-right.nav-pills.nav-lg {
+            display: none;
+        }
+        .contents-header {
+            display: none;
+        }
+    }
+</style>
 
 <div class="container">
-    <ul class="nav pull-right nav-pills" style="margin:-20px 0">
+    <div class="contents-header">
+        <h2>Devices</h2>
+        <p>
+            管理機器の一覧
+        </p>
+    </div>
+    <ul class="nav pull-right nav-pills nav-lg">
         <li>
             <%= link_to new_device_path, class: "btn btn-primary" do %>
                 <%= fa_icon "plus fw" %>New Device
                     <% end %>
         </li>
         <li>
-            <%= form_tag("/search", method: "get") do %>
-                <%= label_tag(:q, "Search:") %>
-                    <%= text_field_tag(:q) %>
-                        <%= submit_tag("Search") %>
-                            <% end %>
-        </li>
-        <li>
-            <div class="input-group">
-                <span class="input-group-addon"><%= fa_icon "search fw" %></span>
-                <input type="text" class="form-control" placeholder="space separated AND search ...">
-                <span class="input-group-btn">
-                    <button type="button" class="btn btn-default">Search</button>
-                </span>
-            </div>
+            <%= form_tag "/devices/search", method: "get" do %>
+                <div class="input-group">
+                    <%= text_field_tag :search, "", class: "form-control", placeholder: "search ..." %>
+                        <span class="input-group-btn">
+                            <%= button_tag type: "submit", class: "btn btn-primary" do %>
+                                <%= fa_icon "search fw" %>Search
+                                    <% end %>
+                        </span>
+                </div>
+                <% end %>
         </li>
     </ul>
-    <hr>
-    <div>
-        <h2>Devices</h2>
-        <p>
-            管理機器の一覧
-        </p>
-    </div>
+    <ul class="nav pull-right nav-pills nav-sm">
+        <li>
+            <%= link_to new_device_path, class: "btn btn-primary btn-sm" do %>
+                <%= fa_icon "plus fw" %>
+                    <% end %>
+        </li>
+        <li>
+            <%= form_tag "/devices/search", method: "get" do %>
+                <div class="input-group">
+                    <%= text_field_tag :search, "", class: "form-control input-sm", placeholder: "search ..." %>
+                        <span class="input-group-btn">
+                            <%= button_tag type: "submit", class: "btn btn-primary btn-sm" do %>
+                                <%= fa_icon "search fw" %>
+                                    <% end %>
+                        </span>
+                </div>
+                <% end %>
+        </li>
+    </ul>
 
     <hr>
 

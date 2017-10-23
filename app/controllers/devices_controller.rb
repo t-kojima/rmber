@@ -19,6 +19,11 @@ class DevicesController < ApplicationController
   # GET /devices/1/edit
   def edit; end
 
+  def search
+    @devices = Device.all
+    respond_to { |format| format.html { render :index } }
+  end
+
   # POST /devices
   # POST /devices.json
   def create
