@@ -1,0 +1,2 @@
+class NetworkInterface < ApplicationRecord
+end

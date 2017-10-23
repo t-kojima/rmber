@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171009121627) do
+ActiveRecord::Schema.define(version: 20171023022414) do
 
   create_table "devices", force: :cascade do |t|
     t.string "host"
@@ -21,6 +21,16 @@ ActiveRecord::Schema.define(version: 20171009121627) do
     t.string "purpose"
     t.boolean "disabled"
     t.boolean "deleted"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "network_interfaces", force: :cascade do |t|
+    t.string "ip_address"
+    t.string "subnet_mask"
+    t.string "mac_address"
+    t.string "device_id"
+    t.integer "sort_key"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

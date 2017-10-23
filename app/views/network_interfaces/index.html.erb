@@ -5,35 +5,19 @@
 </script>
 
 <div class="container">
-    <ul class="nav pull-right nav-pills" style="margin:-20px 0">
-        <li>
-            <%= link_to new_device_path, class: "btn btn-primary" do %>
-                <%= fa_icon "plus fw" %>New Device
-                    <% end %>
-        </li>
-        <li>
-            <%= form_tag("/search", method: "get") do %>
-                <%= label_tag(:q, "Search:") %>
-                    <%= text_field_tag(:q) %>
-                        <%= submit_tag("Search") %>
-                            <% end %>
-        </li>
-        <li>
-            <div class="input-group">
-                <span class="input-group-addon"><%= fa_icon "search fw" %></span>
-                <input type="text" class="form-control" placeholder="space separated AND search ...">
-                <span class="input-group-btn">
-                    <button type="button" class="btn btn-default">Search</button>
-                </span>
-            </div>
-        </li>
-    </ul>
-    <hr>
     <div>
-        <h2>Devices</h2>
+        <h2>Network Interfaces</h2>
         <p>
-            管理機器の一覧
+            IPアドレスの一覧
         </p>
+    </div>
+
+    <hr>
+
+    <div>
+        <%= link_to new_device_path, class: "btn btn-primary" do %>
+            <%= fa_icon "plus fw" %>New Device
+                <% end %>
     </div>
 
     <hr>
@@ -58,31 +42,22 @@
         </thead>
 
         <tbody>
-            <% @devices.each do |device| %>
+            <% @network_interfaces.each do |network_interface| %>
                 <tr>
                     <td>
-                        <%= device.host %>
+                        <%= network_interface.ip_address %>
                     </td>
                     <td>
-                        <%= device.os %>
+                        <%= network_interface.subnet_mask %>
                     </td>
                     <td>
-                        <%= device.maker %>
+                        <%= network_interface.mac_address %>
                     </td>
                     <td>
-                        <%= device.model %>
+                        <%= network_interface.device_id %>
                     </td>
                     <td>
-                        <%= device._type %>
-                    </td>
-                    <td>
-                        <%= device.purpose %>
-                    </td>
-                    <td>
-                        <%= device.disabled %>
-                    </td>
-                    <td>
-                        <%= device.deleted %>
+                        <%= network_interface.sort_key %>
                     </td>
                     <td>
                         <%= link_to device, class: "btn btn-sm btn-primary",

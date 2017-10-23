@@ -60,4 +60,7 @@ gem 'jquery-ui-rails'
 # Use Bootstrap sass
 gem 'bootstrap-sass'
 # Use Font Awesome
-gem "font-awesome-rails"
+gem 'font-awesome-rails'
+
+# Append Vendor Prefix
+gem 'autoprefixer-rails'

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ip_address: MyString
+  subnet_mask: MyString
+  mac_address: MyString
+  device_id: MyString
+  sort_key: 1
+
+two:
+  ip_address: MyString
+  subnet_mask: MyString
+  mac_address: MyString
+  device_id: MyString
+  sort_key: 1
