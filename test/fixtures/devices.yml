@@ -7,7 +7,7 @@ one:
   model: MyString
   _type: MyString
   purpose: MyString
-  disabled: false
+  enabled: false
   deleted: false
 
 two:
@@ -17,5 +17,5 @@ two:
   model: MyString
   _type: MyString
   purpose: MyString
-  disabled: false
+  enabled: false
   deleted: false
