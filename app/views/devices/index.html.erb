@@ -4,75 +4,133 @@
     });
 </script>
 <style>
-    .nav li a {
-        padding: 6px 15px
-    }
-    
     .content-header {
-        margin-top: -20px
+        background: navy;
+        color: whitesmoke;
     }
     
     .content-header h2 {
-        margin: 5px
+        margin-top: 16px;
     }
     
-    @media (max-width: 767px) {
-        .nav li b {
-            display: none
-        }
+    .content-header li a {
+        margin: 1rem;
+        color: whitesmoke;
+    }
+    
+    .content-header li a:hover {
+        background: lightskyblue;
+    }
+    
+    .content-header li a:focus {
+        background: lightslategrey;
+    }
+    
+    td .nav-pills li a {
+        padding: 3px 6px;
+    }
+    
+    #search .input-group {
+        margin: 1rem;
+    }
+    
+    #filter .btn-group {
+        margin: 1rem;
+    }
+    
+    #filter label.active,
+    #filter label:active {
+        background-color: #3498db;
+        border-color: #2b94d9;
+        color: whitesmoke;
     }
 </style>
 
-<div class="container">
-    <section class="content-header">
+<section class="content-header">
+    <div class="container">
         <div class="row">
-            <div class="col-md-3">
-                <h2>Devices</h2>
+            <div class="col-md-4">
+                <h2>
+                    <%= fa_icon "desktop fw" %> Devices</h2>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-8">
                 <ul class="nav pull-right nav-pills">
                     <li>
-                        <%= link_to new_device_path, class: "btn btn-primary" do %>
-                            <%= fa_icon "plus fw" %> <b>New</b>
+                        <%= link_to new_device_path do %>
+                            <%= fa_icon "plus fw" %> New
                                 <% end %>
                     </li>
                     <li>
-                        <%= form_tag "/devices/search", method: "get" do %>
-                            <div class="input-group">
-                                <%= text_field_tag :search, "", class: "form-control", placeholder: "search ..." %>
-                                    <span class="input-group-btn">
-                                        <%= button_tag type: "submit", class: "btn btn-primary" do %>
-                                        <%= fa_icon "search fw" %> <b>Search</b>
-                                        <% end %>
-                                    </span>
-                            </div>
-                            <% end %>
+                        <a href="#filter" data-toggle="collapse" aria-expanded="false" aria-controls="filter">
+                            <%= fa_icon "filter fw" %> Filter</a>
+                    </li>
+                    <li>
+                        <a href="#search" data-toggle="collapse" aria-expanded="false" aria-controls="search">
+                            <%= fa_icon "search fw" %> Search</a>
                     </li>
                 </ul>
             </div>
         </div>
-    </section>
+        <div id="search" class="collapse">
+            <%= form_tag "/devices/search", method: "get" do %>
+                <div class="input-group">
+                    <%= text_field_tag :search, "", class: "form-control", placeholder: "search ..." %>
+                        <span class="input-group-btn">
+                                <%= button_tag type: "submit", class: "btn btn-info" do %>
+                                <%= fa_icon "search fw" %>
+                                <% end %>
+                                    </span>
+                </div>
+                <% end %>
+        </div>
+        <div id="filter" class="collapse">
+            <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-default active">
+                            <input type="checkbox" autocomplete="off" checked> Enabled
+                        </label>
+                <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off"> Disabled
+                        </label>
+                <label class="btn btn-default">
+                            <input type="checkbox" autocomplete="off"> Deleted
+                        </label>
+            </div>
+            <div class="btn-group">
+                <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                      Type
+                      <span class="caret"></span>
+                    </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Dropdown link</a></li>
+                    <li><a href="#">Dropdown link</a></li>
+                    <li><a href="#">Dropdown link</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
 
-    <hr>
-
-    <section>
+<section>
+    <div class="container">
         <p id="notice">
             <%= notice %>
         </p>
-    </section>
+    </div>
+</section>
 
-    <section>
+<section>
+    <div class="container">
         <table class="table">
             <thead>
                 <tr>
+                    <th>ID</th>
+                    <th>Status</th>
                     <th>Host</th>
-                    <th>Os</th>
+                    <th>OS</th>
                     <th>Maker</th>
                     <th>Model</th>
                     <th>Type</th>
                     <th>Purpose</th>
-                    <th>Enabled</th>
-                    <th>Deleted</th>
                     <th colspan="3">icons</th>
                 </tr>
             </thead>
@@ -80,6 +138,18 @@
             <tbody>
                 <% @devices.each do |device| %>
                     <tr>
+                        <td>
+                            <%= device.id %>
+                        </td>
+                        <td>
+                            <% if device.enabled %>
+                                <%= label_tag 'Enabled', nil , class: "label label-info" %>
+                                    <% elsif device.deleted %>
+                                        <%= label_tag 'Deleted', nil , class: "label label-default" %>
+                                            <% else %>
+                                                <%= label_tag 'Disabled', nil , class: "label label-warning" %>
+                                                    <% end %>
+                        </td>
                         <td>
                             <%= device.host %>
                         </td>
@@ -99,32 +169,44 @@
                             <%= device.purpose %>
                         </td>
                         <td>
-                            <%= device.enabled %>
-                        </td>
-                        <td>
-                            <%= device.deleted %>
-                        </td>
-                        <td>
-                            <%= link_to device, class: "btn btn-sm btn-primary",
+                            <ul class="nav nav-pills">
+                                <li>
+                                    <%= link_to device, class: "btn btn-xs btn-default",
                                         title: "show", 'data-toggle' => 'tooltip', 'data-placement' => 'top' do %>
-                                <%= fa_icon "info fw" %>
-                                    <% end %>
-                        </td>
-                        <td>
-                            <%= link_to  edit_device_path(device), class: "btn btn-sm btn-primary", 
+                                        <%= fa_icon "info fw" %>
+                                            <% end %>
+                                </li>
+                                <li>
+                                    <%= link_to  edit_device_path(device), class: "btn btn-xs btn-default", 
                                         title: "edit", 'data-toggle' => 'tooltip', 'data-placement' => 'top' do %>
-                                <%= fa_icon "pencil-square-o fw" %>
-                                    <% end %>
+                                        <%= fa_icon "pencil fw" %>
+                                            <% end %>
+                                </li>
+                                <li>
+                                    <%= link_to  edit_device_path(device), class: "btn btn-xs btn-default", 
+                                            title: "clone", 'data-toggle' => 'tooltip', 'data-placement' => 'top' do %>
+                                        <%= fa_icon "clone fw" %>
+                                            <% end %>
+                                </li>
+                                <li>
+                                    <%= link_to device, method: :delete, data: { confirm: '削除します。宜しいですか？'}, class: "btn btn-xs btn-danger",
+                                        title: "delete", 'data-toggle' => 'tooltip', 'data-placement' => 'top' do %>
+                                        <%= fa_icon "trash fw" %>
+                                            <% end %>
+                                </li>
+
+                            </ul>
+
                         </td>
                         <td>
-                            <%= link_to device, method: :delete, data: { confirm: '削除します。宜しいですか？'}, class: "btn btn-sm btn-danger",
-                                        title: "delete", 'data-toggle' => 'tooltip', 'data-placement' => 'top' do %>
-                                <%= fa_icon "trash fw" %>
-                                    <% end %>
+
+                        </td>
+                        <td>
+
                         </td>
                     </tr>
                     <% end %>
             </tbody>
         </table>
-    </section>
-</div>
+    </div>
+</section>
