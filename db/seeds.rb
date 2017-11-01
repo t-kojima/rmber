@@ -6,4 +6,15 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Device.create(:host=> 'hoge')
+300.times do |i|
+  Device.create(
+    host: "dev#{i}",
+    os: "linux",
+    maker: "dell",
+    model: "opt",
+    _type: "note",
+    purpose: "moge",
+    enabled: true,
+    deleted: false
+  )
+end

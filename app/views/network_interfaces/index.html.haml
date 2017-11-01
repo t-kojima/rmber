@@ -1,0 +1,54 @@
+:javascript
+  $(document).ready(function() {
+      $('[data-toggle="tooltip"]').tooltip();
+  });
+.container
+  %div
+    %h2 Network Interfaces
+    %p
+      IPアドレスの一覧
+  %hr/
+  %div
+    = link_to new_device_path, class: "btn btn-primary" do
+      = fa_icon "plus fw"
+      New Device
+  %hr/
+  %p#notice
+    = notice
+  %table.table
+    %thead
+      %tr
+        %th Host
+        %th Os
+        %th Maker
+        %th Model
+        %th Type
+        %th Purpose
+        %th Enabled
+        %th Deleted
+        %th{:colspan => "3"} icons
+    %tbody
+      - @network_interfaces.each do |network_interface|
+        %tr
+          %td
+            = network_interface.ip_address
+          %td
+            = network_interface.subnet_mask
+          %td
+            = network_interface.mac_address
+          %td
+            = network_interface.device_id
+          %td
+            = network_interface.sort_key
+          %td
+            = link_to device, class: "btn btn-sm btn-primary",                        |
+              title: "show", 'data-toggle' => 'tooltip', 'data-placement' => 'top' do |
+              = fa_icon "info fw"
+          %td
+            = link_to  edit_device_path(device), class: "btn btn-sm btn-primary",     |
+              title: "edit", 'data-toggle' => 'tooltip', 'data-placement' => 'top' do |
+              = fa_icon "pencil-square-o fw"
+          %td
+            = link_to device, method: :delete, data: { confirm: '削除します。宜しいですか？'}, class: "btn btn-sm btn-danger", |
+              title: "delete", 'data-toggle' => 'tooltip', 'data-placement' => 'top' do                           |
+              = fa_icon "trash fw"

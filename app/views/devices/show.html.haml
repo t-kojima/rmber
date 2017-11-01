@@ -1,0 +1,29 @@
+%p#notice
+  = notice
+%p
+  %strong Host:
+  = @device.host
+%p
+  %strong Os:
+  = @device.os
+%p
+  %strong Maker:
+  = @device.maker
+%p
+  %strong Model:
+  = @device.model
+%p
+  %strong Type:
+  = @device._type
+%p
+  %strong Purpose:
+  = @device.purpose
+%p
+  %strong Enabled:
+  = @device.enabled
+%p
+  %strong Deleted:
+  = @device.deleted
+= link_to 'Edit', edit_device_path(@device)
+|
+\#{link_to 'Back', devices_path}

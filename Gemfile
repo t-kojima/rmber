@@ -64,3 +64,9 @@ gem 'font-awesome-rails'
 
 # Append Vendor Prefix
 gem 'autoprefixer-rails'
+
+# Pagination
+gem 'kaminari'
+# haml
+gem 'haml-rails'
+gem 'erb2haml'

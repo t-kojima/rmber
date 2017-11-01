@@ -1,0 +1,119 @@
+%section.content-header
+  .container
+    .row
+      .col-md-4
+        %h2
+          = fa_icon "desktop fw"
+          Devices
+      .col-md-8
+        %ul.nav.pull-right.nav-pills
+          %li
+            = link_to new_device_path do
+              = fa_icon "plus fw"
+              New
+          %li
+            %a{"aria-controls" => "filter", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#filter"}
+              = fa_icon "filter fw"
+              Filter
+          %li
+            %a{"aria-controls" => "search", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#search"}
+              = fa_icon "search fw"
+              Search
+    #search.collapse
+      = form_tag "/devices/search", method: "get" do
+        .input-group
+          = text_field_tag :search, "", class: "form-control", placeholder: "search ..."
+          %span.input-group-btn
+            = button_tag type: "submit", class: "btn btn-info" do
+              = fa_icon "search fw"
+    #filter.collapse
+      .btn-group{"data-toggle" => "buttons"}
+        %label.btn.btn-default.active
+          %input{:autocomplete => "off", :checked => "checked", :type => "checkbox"}/
+          Enabled
+        %label.btn.btn-default
+          %input{:autocomplete => "off", :type => "checkbox"}/
+          Disabled
+        %label.btn.btn-default
+          %input{:autocomplete => "off", :type => "checkbox"}/
+          Deleted
+      .btn-group
+        %a.btn.btn-default.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#"}
+          Type
+          %span.caret
+        %ul.dropdown-menu
+          %li
+            %a{:href => "#"} Dropdown link
+          %li
+            %a{:href => "#"} Dropdown link
+          %li
+            %a{:href => "#"} Dropdown link
+%section
+  .container
+    %p#notice
+      = notice
+    = page_entries_info @devices
+%section
+  .container
+    %table.table
+      %thead
+        %tr
+          %th ID
+          %th Status
+          %th Host
+          %th OS
+          %th Maker
+          %th Model
+          %th Type
+          %th Purpose
+          %th{:colspan => "3"} icons
+      %tbody
+        - @devices.each do |device|
+          %tr
+            %td
+              = device.id
+            %td
+              - if device.enabled
+                = label_tag 'Enabled', nil , class: "label label-info"
+              - elsif device.deleted
+                = label_tag 'Deleted', nil , class: "label label-default"
+              - else
+                = label_tag 'Disabled', nil , class: "label label-warning"
+            %td
+              = device.host
+            %td
+              = device.os
+            %td
+              = device.maker
+            %td
+              = device.model
+            %td
+              = device._type
+            %td
+              = device.purpose
+            %td
+              %ul.nav.nav-pills
+                %li
+                  = link_to device, class: "btn btn-xs btn-default",                        |
+                    title: "show", 'data-toggle' => 'tooltip', 'data-placement' => 'top' do |
+                    = fa_icon "info fw"
+                %li
+                  = link_to  edit_device_path(device), class: "btn btn-xs btn-default",     |
+                    title: "edit", 'data-toggle' => 'tooltip', 'data-placement' => 'top' do |
+                    = fa_icon "pencil fw"
+                %li
+                  = link_to  edit_device_path(device), class: "btn btn-xs btn-default",      |
+                    title: "clone", 'data-toggle' => 'tooltip', 'data-placement' => 'top' do |
+                    = fa_icon "clone fw"
+                %li
+                  = link_to device, method: :delete, data: { confirm: '削除します。宜しいですか？'}, class: "btn btn-xs btn-danger", |
+                    title: "delete", 'data-toggle' => 'tooltip', 'data-placement' => 'top' do                           |
+                    = fa_icon "trash fw"
+            %td
+            %td
+    = paginate @devices
+
+:javascript
+  $(document).ready(function() {
+    $('[data-toggle="tooltip"]').tooltip();
+  });
