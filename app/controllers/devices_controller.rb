@@ -24,6 +24,9 @@ class DevicesController < ApplicationController
     respond_to { |format| format.html { render :index } }
   end
 
+  def filter
+  end
+
   # POST /devices
   # POST /devices.json
   def create

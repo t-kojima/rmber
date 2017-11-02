@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   resources :devices do
     collection do
-      get 'search'
+      post 'search'
+      post 'filter'
     end
   end
   resources :network_interfaces

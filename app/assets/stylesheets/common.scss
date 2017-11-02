@@ -1,8 +1,12 @@
+html {
+    font-size: 16px;
+}
+
 header {
     a>div {
         text-align: center;
-        height: 5rem;
-        line-height: 5rem;
+        height: 3rem;
+        line-height: 3rem;
         color: #5F5F5F;
     }
     a>div:hover {
@@ -10,40 +14,47 @@ header {
     }
 }
 
-.content-header {
-    background: navy;
-    color: whitesmoke;
-    h2 {
-        margin-top: 16px;
+article {
+    header {
+        background: navy;
+        color: whitesmoke;
+        h2 {
+            margin-top: 16px;
+        }
+        li {
+            a {
+                margin: 1rem;
+                color: whitesmoke;
+            }
+            a:hover {
+                background: lightskyblue;
+            }
+            a:focus {
+                background: lightslategrey;
+            }
+        }
+        #search {
+            .input-group {
+                margin: 1rem;
+            }
+        }
+        #filter {
+            .btn-group {
+                margin: 1rem;
+            }
+            label.active,
+            label:active {
+                background-color: #3498db;
+                border-color: #2b94d9;
+                color: whitesmoke;
+            }
+        }
     }
-    li {
-        a {
-            margin: 1rem;
-            color: whitesmoke;
-        }
-        a:hover {
-            background: lightskyblue;
-        }
-        a:focus {
-            background: lightslategrey;
-        }
-    }
-    #search {
-        .input-group {
-            margin: 1rem;
-        }
-    }
-    #filter {
-        .btn-group {
-            margin: 1rem;
-        }
-        label.active,
-        label:active {
-            background-color: #3498db;
-            border-color: #2b94d9;
-            color: whitesmoke;
-        }
-    }
+}
+
+.page-entries-info {
+    //text-align: right;
+    font-size: 0.8rem;
 }
 
 td {
